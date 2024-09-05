@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dummysearch.domain.MemberRepository;
 import org.example.dummysearch.dto.MemberResponseDto;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,4 +62,17 @@ public class MemberService {
         return responseDtos;
     }
 
+    @Transactional(readOnly = true)
+    public List<MemberResponseDto> findByFulltext(String keyword, Pageable pageable){
+        long startTime = System.currentTimeMillis();
+
+        List<MemberResponseDto> responseDtos = memberRepository.findByFulltext(keyword, pageable).stream()
+                .map(MemberResponseDto::new)
+                .toList();
+
+        long duration = System.currentTimeMillis() - startTime;
+        log.info("API 호출 시간 " + duration + " ms");
+
+        return responseDtos;
+    }
 }
