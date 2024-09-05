@@ -27,7 +27,7 @@ public class MemberService {
                         .toList();
 
         long duration = System.currentTimeMillis() - startTime;
-        log.info("Jpa " + duration + " ms is token");
+        log.info("API 호출 시간 " + duration + " ms");
 
         return responseDtos;
     }
@@ -41,7 +41,7 @@ public class MemberService {
                 .toList();
 
         long duration = System.currentTimeMillis() - startTime;
-        log.info("Jpa " + duration + " ms is token");
+        log.info("API 호출 시간 " + duration + " ms");
 
         return responseDtos;
     }
@@ -55,7 +55,7 @@ public class MemberService {
                 .toList();
 
         long duration = System.currentTimeMillis() - startTime;
-        log.info("Jpa " + duration + " ms is token");
+        log.info("API 호출 시간 " + duration + " ms");
 
         return responseDtos;
     }
