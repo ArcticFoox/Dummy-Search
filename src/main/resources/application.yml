@@ -1,6 +1,6 @@
 spring:
   profiles:
-    include: dev
+    active: local
 
   jpa:
     hibernate:
