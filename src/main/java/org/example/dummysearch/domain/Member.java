@@ -26,4 +26,9 @@ public class Member {
         this.userId = userId;
         this.userName = userName;
     }
+
+    public void update(String userId, String userName){
+        this.userId = userId;
+        this.userName = userName;
+    }
 }

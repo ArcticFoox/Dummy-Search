@@ -1,14 +1,12 @@
 package org.example.dummysearch.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.dummysearch.dto.MemberUpdateDto;
 import org.example.dummysearch.service.MemberService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -38,5 +36,20 @@ public class MemberController {
                                             @RequestParam(name = "keyword") String keyword) {
         Pageable pageable = PageRequest.of(page, size);
         return ResponseEntity.ok(memberService.findByFulltext(keyword, pageable));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable(name = "id") Long id){
+        return ResponseEntity.ok(memberService.findById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody MemberUpdateDto dto){
+        return ResponseEntity.ok(memberService.update(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") Long id){
+        return ResponseEntity.ok(memberService.delete(id));
     }
 }
